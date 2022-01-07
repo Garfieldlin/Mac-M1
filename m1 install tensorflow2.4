@@ -1,0 +1,47 @@
+M1安装tensorflow、pandas、numpy、matplotlib等人工智能深度学习环境
+
+1、安装anaconda（可以不安装）
+2、安装Miniforge3
+2.1下载Miniforge3-MacOSX-arm64.sh
+2.2下载environment.yml
+——在Miniforge3-MacOSX-arm64.sh目录下——
+2.3使用bash Miniforge3-MacOSX-arm64.sh（如无法执行使用chmod u+x Miniforge3-MacOSX-arm64.sh添加执行权限）
+2.4使用vim ~/.zshrc配置文件
+
+2.5使用conda env create --file=PATH_TO_ENVIRONMENT.YML --name=tf创建名为tf的虚拟环境。
+2.6使用conda activate tf激活tf环境，终端前缀变成tf。
+
+——以下操作在tf环境下——
+2.7下载tensorflow_macos-0.1alpha3.tar.gz，解压，进入arm64，将文件中的macosx版本修改为你的版本，比如我的是MacOS 12.1，文件名改成：
+tensorflow_macos-0.1a3-cp38-cp38-macosx_12_1_arm64.whl h5py-2.10.0-cp38-cp38-macosx_12_1_arm64.whl 
+grpcio-1.33.2-cp38-cp38-macosx_12_1_arm64.whl tensorflow_addons_macos-0.1a3-cp38-cp38-macosx_12_1_arm64.whl
+numpy-1.18.5-cp38-cp38-macosx_12_1_arm64.whl
+2.8安装以上5个wheel，在上面的arm64目录下使用
+pip install --upgrade --force --no-dependencies tensorflow_macos-0.1a3-cp38-cp38-macosx_12_1_arm64.whl h5py-2.10.0-cp38-cp38-macosx_12_1_arm64.whl grpcio-1.33.2-cp38-cp38-macosx_12_1_arm64.whl tensorflow_addons_macos-0.1a3-cp38-cp38-macosx_12_1_arm64.whl numpy-1.18.5-cp38-cp38-macosx_12_1_arm64.whl 进行安装。
+2.9使用python进入python交互，使用import tensorflow测试是否可以行，开始会慢一点才有反应，不要着急。
+2.10安装其他包的话在tf环境下使用conda 进行安装（此时使用pip的话不会安装到tf环境里面，因为你的conda还没有安装pip），速度有时会有点慢，可以进行源配置：
+2.10.1使用conda config --set show_channel_urls yes 生成.condarc
+2.10.2使用vim .condarc将内容修改为：
+——.condarc内容——
+channels:
+  - defaults
+show_channel_urls: true
+default_channels:
+  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/main
+  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/r
+  - https://mirrors.bfsu.edu.cn/anaconda/pkgs/msys2
+custom_channels:
+  conda-forge: https://mirrors.bfsu.edu.cn/anaconda/cloud
+  msys2: https://mirrors.bfsu.edu.cn/anaconda/cloud
+  bioconda: https://mirrors.bfsu.edu.cn/anaconda/cloud
+  menpo: https://mirrors.bfsu.edu.cn/anaconda/cloud
+  pytorch: https://mirrors.bfsu.edu.cn/anaconda/cloud
+  pytorch-lts: https://mirrors.bfsu.edu.cn/anaconda/cloud
+  simpleitk: https://mirrors.bfsu.edu.cn/anaconda/cloud
+——.condarc内容——
+2.10.3使用conda clean -i清除索引缓存（建议使用2次～ ，～不要问为什么，我也不知道）
+2.10.4此时就可以在tf环境下使用conda进行安装，速度我也不知道快多少，请自行探索。
+2.11（可选）为tf环境安装pip，使用conda install pip 
+2.11.1 使用pip install pip -U升级pip，如果升级过慢，很慢的那种可以使用pip install -i https://mirrors.bfsu.edu.cn/pypi/web/simple pip -U进行升级。
+2.11.2使用pip config set global.index-url https://mirrors.bfsu.edu.cn/pypi/web/simple修改pip的源，未来提升速度。
+
