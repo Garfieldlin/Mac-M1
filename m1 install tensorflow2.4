@@ -8,6 +8,23 @@ M1安装tensorflow、pandas、numpy、matplotlib等人工智能深度学习环�
 2.3使用bash Miniforge3-MacOSX-arm64.sh（如无法执行使用chmod u+x Miniforge3-MacOSX-arm64.sh添加执行权限）
 2.4使用vim ~/.zshrc配置文件
 
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/linna/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"   #你的路径
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/linna/miniforge3/etc/profile.d/conda.sh" ]; then  #你的路径
+        . "/Users/linna/miniforge3/etc/profile.d/conda.sh"      #你的路径
+    else
+        export PATH="/Users/linna/miniforge3/bin:$PATH" #你的路径
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
 2.5使用conda env create --file=PATH_TO_ENVIRONMENT.YML --name=tf创建名为tf的虚拟环境。
 2.6使用conda activate tf激活tf环境，终端前缀变成tf。
 
